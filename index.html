@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Produkto Koregavimas</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Formos Užsakymas</title>
 </head>
 <body>
   <!-- Language Selector -->
@@ -15,73 +14,33 @@
     <option value="ru">Русский</option>
   </select>
 
-  <h1 id="title">Produkto Koregavimas</h1>
-
-  <!-- Product Customization Form -->
-  <form id="customizationForm">
-    <!-- Shape Selection -->
-    <label id="shapeLabel" for="shape">Pasirinkite Formą:</label>
-    <select id="shape" name="shape">
-      <option value="circle">Apskritimas</option>
-      <option value="square">Kvadratas</option>
-      <option value="triangle">Trikampis</option>
-      <option value="oval">Ovalas</option>
-      <option value="star">Žvaigždė</option>
-      <option value="heart">Širdelė</option>
-    </select>
-
-    <!-- Grams Selection -->
-    <label id="gramsLabel" for="grams">Pasirinkite Svorį:</label>
-    <select id="grams" name="grams">
-      <option value="50">50g</option>
-      <option value="100">100g</option>
-      <option value="150">150g</option>
-      <option value="200">200g</option>
-      <option value="250">250g</option>
-      <option value="500">500g</option>
-    </select>
-
-    <!-- Color Selection -->
-    <label id="colorLabel" for="color">Pasirinkite Spalvą:</label>
-    <input type="color" id="color" name="color" value="#ff0000">
-  </form>
-
-  <!-- Submit Order Button -->
+  <!-- Link to Google Form -->
+  <h2 id="formPrompt">Pateikti Užsakymą:</h2>
   <a id="submitButton" href="https://docs.google.com/forms/d/e/1FAIpQLSeQ2G2snJXhXM479lPHztG8BSpLH7aRW34J6cabiT_qarDCQw/viewform?usp=sf_link" target="_blank">
     <button type="button">Pateikti Užsakymą</button>
   </a>
 
   <script>
+    // Translations for each language
     const translations = {
       lt: {
-        title: "Produkto Koregavimas",
-        shapeLabel: "Pasirinkite Formą:",
-        gramsLabel: "Pasirinkite Svorį:",
-        colorLabel: "Pasirinkite Spalvą:",
+        formPrompt: "Pateikti Užsakymą:",
         submitButton: "Pateikti Užsakymą"
       },
       en: {
-        title: "Product Customization",
-        shapeLabel: "Choose Shape:",
-        gramsLabel: "Choose Weight:",
-        colorLabel: "Choose Color:",
+        formPrompt: "Submit Order:",
         submitButton: "Submit Order"
       },
       ru: {
-        title: "Настройка продукта",
-        shapeLabel: "Выберите форму:",
-        gramsLabel: "Выберите вес:",
-        colorLabel: "Выберите цвет:",
+        formPrompt: "Отправить заказ:",
         submitButton: "Отправить заказ"
       }
     };
 
+    // Function to switch languages
     function switchLanguage() {
       const selectedLanguage = document.getElementById("languageSelect").value;
-      document.getElementById("title").innerText = translations[selectedLanguage].title;
-      document.getElementById("shapeLabel").innerText = translations[selectedLanguage].shapeLabel;
-      document.getElementById("gramsLabel").innerText = translations[selectedLanguage].gramsLabel;
-      document.getElementById("colorLabel").innerText = translations[selectedLanguage].colorLabel;
+      document.getElementById("formPrompt").innerText = translations[selectedLanguage].formPrompt;
       document.getElementById("submitButton").innerText = translations[selectedLanguage].submitButton;
     }
 
