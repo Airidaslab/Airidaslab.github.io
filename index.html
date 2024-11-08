@@ -1,43 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Customizer</title>
+  <title>Produkto Koregavimo Puslapis</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Customize Your Product</h1>
-  <form id="customizationForm" action="" method="post">
+  <h1>Produkto Koregavimas</h1>
+
+  <!-- Product Customization Form -->
+  <form id="customizationForm">
     <!-- Shape Selection -->
-    <label for="shape">Choose a Shape:</label>
+    <label for="shape">Pasirinkite Formą:</label>
     <select id="shape" name="shape">
-      <option value="circle">Circle</option>
-      <option value="square">Square</option>
-      <option value="triangle">Triangle</option>
+      <option value="circle">Apskritimas</option>
+      <option value="square">Kvadratas</option>
+      <option value="triangle">Trikampis</option>
+      <option value="oval">Ovalas</option>
+      <option value="star">Žvaigždė</option>
+      <option value="heart">Širdelė</option>
     </select>
 
     <!-- Grams Selection -->
-    <label for="grams">Select Grams:</label>
+    <label for="grams">Pasirinkite Svorį:</label>
     <select id="grams" name="grams">
       <option value="50g">50g</option>
       <option value="100g">100g</option>
+      <option value="150g">150g</option>
       <option value="200g">200g</option>
+      <option value="250g">250g</option>
+      <option value="500g">500g</option>
     </select>
 
     <!-- Color Selection -->
-    <label for="color">Choose a Color:</label>
+    <label for="color">Pasirinkite Spalvą:</label>
     <input type="color" id="color" name="color" value="#ff0000">
-
-    <!-- Submit Button -->
-    <button type="submit">Submit Order</button>
   </form>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSeQ2G2snJXhXM479lPHztG8BSpLH7aRW34J6cabiT_qarDCQw/viewform?usp=sf_link" target="_blank">
-  <button type="button">Submit Order</button>
-</a>
-  <p id="orderConfirmation" style="display:none;">Thank you! Your order has been submitted.</p>
+
+  <!-- Submit Order Button - Opens Google Form in New Tab -->
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSeQ2G2snJXhXM479lPHztG8BSpLH7aRW34J6cabiT_qarDCQw/viewform?usp=sf_link" target="_blank">
+    <button type="button">Pateikti Užsakymą</button>
+  </a>
+
+  <!-- Confirmation Message (optional) -->
+  <p id="orderConfirmation" style="display:none;">Ačiū! Jūsų užsakymas pateiktas.</p>
 
   <script src="script.js"></script>
 </body>
 </html>
-
