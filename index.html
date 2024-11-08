@@ -20,6 +20,42 @@
   <!-- Form Title -->
   <h2 id="formPrompt">Pateikti Užsakymą:</h2>
   
+  <!-- Grams Selection (Custom Pricing) -->
+  <label for="grams">Pasirinkite gramus:</label>
+  <select id="grams" name="grams" onchange="calculateCost()">
+    <option value="5">500g (5 EUR)</option>
+    <option value="10">1kg (10 EUR)</option>
+    <option value="15">2kg (15 EUR)</option>
+  </select>
+
+  <br><br>
+
+  <!-- Color of Packaging (Custom Pricing) -->
+  <label for="color">Pasirinkite pakuotės spalvą:</label>
+  <select id="color" name="color" onchange="calculateCost()">
+    <option value="1">Raudona (1 EUR)</option>
+    <option value="2">Mėlyna (2 EUR)</option>
+    <option value="3">Žalia (3 EUR)</option>
+  </select>
+
+  <br><br>
+
+  <!-- Shape Selection (Custom Pricing) -->
+  <label for="shape">Pasirinkite formą:</label>
+  <select id="shape" name="shape" onchange="calculateCost()">
+    <option value="2">Apskritimas (2 EUR)</option>
+    <option value="3">Kvadratas (3 EUR)</option>
+    <option value="4">Trikampis (4 EUR)</option>
+  </select>
+
+  <br><br>
+
+  <!-- Display Total Cost -->
+  <h3>Bendra kaina: <span id="totalCost">0 EUR</span></h3>
+
+  <!-- Hidden field to store total cost (for submission to Google Form) -->
+  <input type="hidden" name="entry.12345678" id="totalCostHidden" value="0">
+
   <!-- Link to Google Form (Updated Dynamically) -->
   <a id="submitButton" href="#" target="_blank">
     <button type="button" id="submitOrderButton">Pateikti Užsakymą</button>
@@ -37,15 +73,43 @@
     const translations = {
       lt: {
         formPrompt: "Pateikti Užsakymą:",
+        grams: "Pasirinkite gramus:",
+        color: "Pasirinkite pakuotės spalvą:",
+        shape: "Pasirinkite formą:",
         submitButton: "Pateikti Užsakymą"
       },
       en: {
         formPrompt: "Submit Order:",
+        grams: "Choose Grams:",
+        color: "Choose Color of Packaging:",
+        shape: "Choose Shape:",
         submitButton: "Submit Order"
       },
       ru: {
         formPrompt: "Отправить заказ:",
+        grams: "Выберите граммы:",
+        color: "Выберите цвет упаковки:",
+        shape: "Выберите форму:",
         submitButton: "Отправить заказ"
+      }
+    };
+
+    // Prices for each option
+    const prices = {
+      grams: {
+        5: 5,   // 500g -> 5 EUR
+        10: 10, // 1kg -> 10 EUR
+        15: 15  // 2kg -> 15 EUR
+      },
+      color: {
+        1: 1,   // Red -> 1 EUR
+        2: 2,   // Blue -> 2 EUR
+        3: 3    // Green -> 3 EUR
+      },
+      shape: {
+        2: 2,   // Circle -> 2 EUR
+        3: 3,   // Square -> 3 EUR
+        4: 4    // Triangle -> 4 EUR
       }
     };
 
@@ -56,14 +120,39 @@
       // Update the text on the page
       document.getElementById("formPrompt").innerText = translations[selectedLanguage].formPrompt;
       document.getElementById("submitOrderButton").innerText = translations[selectedLanguage].submitButton;
+      document.querySelector('label[for="grams"]').innerText = translations[selectedLanguage].grams;
+      document.querySelector('label[for="color"]').innerText = translations[selectedLanguage].color;
+      document.querySelector('label[for="shape"]').innerText = translations[selectedLanguage].shape;
 
       // Update the Google Form link based on selected language
       document.getElementById("submitButton").href = formLinks[selectedLanguage];
     }
 
-    // Initialize the language on page load
+    // Function to calculate the total cost based on selected options
+    function calculateCost() {
+      const gramsValue = parseInt(document.getElementById("grams").value);
+      const colorValue = parseInt(document.getElementById("color").value);
+      const shapeValue = parseInt(document.getElementById("shape").value);
+
+      // Get the prices for selected options
+      const gramsCost = prices.grams[gramsValue];
+      const colorCost = prices.color[colorValue];
+      const shapeCost = prices.shape[shapeValue];
+
+      // Calculate the total cost
+      const totalCost = gramsCost + colorCost + shapeCost;
+
+      // Display the total cost on the page
+      document.getElementById("totalCost").innerText = totalCost + " EUR";
+
+      // Set the total cost to the hidden field for form submission
+      document.getElementById("totalCostHidden").value = totalCost;
+    }
+
+    // Initialize the language and cost calculation on page load
     window.onload = function() {
       switchLanguage(); // Ensure default language is applied on page load
+      calculateCost();  // Ensure initial cost is calculated on page load
     };
   </script>
 
