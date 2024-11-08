@@ -20,12 +20,19 @@
   <!-- Form Title -->
   <h2 id="formPrompt">Pateikti Užsakymą:</h2>
   
-  <!-- Link to Google Form -->
-  <a id="submitButton" href="https://docs.google.com/forms/d/e/1FAIpQLSeQ2G2snJXhXM479lPHztG8BSpLH7aRW34J6cabiT_qarDCQw/viewform?usp=sf_link" target="_blank">
+  <!-- Link to Google Form (Updated Dynamically) -->
+  <a id="submitButton" href="#" target="_blank">
     <button type="button" id="submitOrderButton">Pateikti Užsakymą</button>
   </a>
 
   <script>
+    // Form links for each language
+    const formLinks = {
+      lt: "https://docs.google.com/forms/d/e/1FAIpQLSeQ2G2snJXhXM479lPHztG8BSpLH7aRW34J6cabiT_qarDCQw/viewform?usp=sf_link",
+      en: "https://docs.google.com/forms/d/e/1FAIpQLSfXzpYcX14NsIB5hX4vs1Z10l_Ug8NG4p7pxI9oS3MdO1CwJw/viewform?usp=sf_link", 
+      ru: "https://docs.google.com/forms/d/e/1FAIpQLScBQH9tukzGeAiO1uLoTbGTZvjNCeLgbu6MviahNWI5BolJ6w/viewform?usp=sf_link"
+    };
+
     // Translations for each language
     const translations = {
       lt: {
@@ -45,8 +52,13 @@
     // Function to switch languages
     function switchLanguage() {
       const selectedLanguage = document.getElementById("languageSelect").value;
+      
+      // Update the text on the page
       document.getElementById("formPrompt").innerText = translations[selectedLanguage].formPrompt;
       document.getElementById("submitOrderButton").innerText = translations[selectedLanguage].submitButton;
+
+      // Update the Google Form link based on selected language
+      document.getElementById("submitButton").href = formLinks[selectedLanguage];
     }
 
     // Initialize the language on page load
