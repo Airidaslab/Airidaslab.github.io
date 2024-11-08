@@ -6,6 +6,7 @@
   <title>Formos Užsakymas</title>
 </head>
 <body>
+
   <!-- Language Selector -->
   <label for="languageSelect">Pasirinkite kalbą:</label>
   <select id="languageSelect" onchange="switchLanguage()">
@@ -14,10 +15,14 @@
     <option value="ru">Русский</option>
   </select>
 
-  <!-- Link to Google Form -->
+  <br><br> <!-- Add some spacing -->
+
+  <!-- Form Title -->
   <h2 id="formPrompt">Pateikti Užsakymą:</h2>
+  
+  <!-- Link to Google Form -->
   <a id="submitButton" href="https://docs.google.com/forms/d/e/1FAIpQLSeQ2G2snJXhXM479lPHztG8BSpLH7aRW34J6cabiT_qarDCQw/viewform?usp=sf_link" target="_blank">
-    <button type="button">Pateikti Užsakymą</button>
+    <button type="button" id="submitOrderButton">Pateikti Užsakymą</button>
   </a>
 
   <script>
@@ -41,13 +46,14 @@
     function switchLanguage() {
       const selectedLanguage = document.getElementById("languageSelect").value;
       document.getElementById("formPrompt").innerText = translations[selectedLanguage].formPrompt;
-      document.getElementById("submitButton").innerText = translations[selectedLanguage].submitButton;
+      document.getElementById("submitOrderButton").innerText = translations[selectedLanguage].submitButton;
     }
 
     // Initialize the language on page load
     window.onload = function() {
-      switchLanguage();
+      switchLanguage(); // Ensure default language is applied on page load
     };
   </script>
+
 </body>
 </html>
